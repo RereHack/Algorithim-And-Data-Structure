@@ -1,0 +1,41 @@
+public class TestBubble {
+    public static void main(String[] args){
+        int[] data = new int[6];
+    }//end of main method
+//*********************//
+    static void bubbleSort(int[] data) {
+        for(int position = data.length-1; position >= 0; position--){
+            for(int scan = 0; scan <= position-1; scan++){
+                if(data[scan] > data[scan+1]){
+                    int temp = data[scan];
+                    data[scan] = data[scan+1];
+                    data[scan+1] = temp;
+                }//end if
+            }//end of inner loop
+        }//end of outer loop
+    }//end of bubbleSort method
+//*********************//    
+  static void insertionSort(int[] data) {
+        for(int index = 1; index < data.length; index++){
+            int j = index;
+            int key = data[index];
+            while((j>0) && (data[j-1] > key)){
+                data[j] = data[j-1];
+                j--;
+            }//end of inner loop
+            data[j] = key;
+        }//end of outer loop
+    }//end of insertionSort method
+//*********************//
+ static void selectionSort(int[] data) {
+        for(int index = 0; index < data.length-1; index++){
+            for(int scan = index+1; scan < data.length; scan++){
+                if(data[index] > data[scan]){
+                    int temp = data[index];
+                    data[index] = data[scan];
+                    data[scan] = temp;
+                }//end of if
+            }//end of inner loop
+        }//end of outer loop
+    }//end of selectionSort method
+}//end of main class

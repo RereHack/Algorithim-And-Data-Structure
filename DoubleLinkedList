@@ -1,0 +1,186 @@
+public class TestDLL {
+    public static void main(String[] args){
+        DLL myList = new DLL();
+    }//end of main method
+}//end of main class
+
+class node1 {
+    int data;
+    node1 next = null;
+    node1 prev = null;
+    public node1(int data){
+        this.data = data;
+    }//end of constructor
+}//end of node class
+
+class DLL{
+    node1 head = null;
+    node1 tail = null;
+    //******Insertion Methods******//
+    public void addFirst(int data){
+        node1 newNode = new node1(data);
+        if(head == null){
+            head = tail = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }//end of if-else
+    }//end of addFirst method
+
+    public void addLast(int data){
+        node1 newNode = new node1(data);
+        if(head == null){
+            head = tail = newNode;
+        } else {
+            node1 current = head;
+            while(current.next != null){
+                current = current.next;
+            }//end of while loop
+            current.next = newNode;
+            newNode.prev = current;
+            tail = newNode;
+        }//end of if-else
+    }//end of addLast method
+
+    public void addAfter(int prevData , int newData){
+        node1 newNode = new node1(newData);
+        node1 current = head;
+        while(current.next != null && current.data != prevData){
+            current =  current.next;
+        }//end of while loop
+        newNode.next = current.next;
+        current.next.prev = newNode;
+        newNode.prev = current;
+        current.next = newNode;
+    }//end of addAfter method
+
+    public void addBefore(int nextData , int newData){
+        node1 newNode = new node1(newData);
+        node1 current = head;
+        while(current.next != null && current.data != nextData){
+            current = current.next;
+        }//end of while loop
+        newNode.next = current;
+        newNode.prev = current.prev;
+        current.prev.next = newNode;
+        current.prev = newNode;
+    }//end of addBefore
+    // ******Deletion Methods******//
+    public void deleteFirst(){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            head = head.next;
+            current.next = null;
+        }//end of if-else
+    }//end of deleteFirst method
+
+    public void deleteLast(){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current.next != null){
+                current = current.next;
+            }//end of while loop
+            node1 beforeLast = current.prev;
+            tail = beforeLast;
+            beforeLast.next = null;
+            current.prev = null;
+            current.next = null;
+        }//end of if-else
+    }//end of deleteLast
+
+    public void deleteTarget(int targetData){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current.next != null && current.data != targetData){
+                current = current.next;
+            }//end of while loop
+            node1 before = current.prev;
+            node1 after = current.next;
+            after.prev = before;
+            before.next = after;
+            current.prev = null;
+            current.next = null;
+        }//end of if-else
+    }//end of deleteTarget
+
+    public void deleteAfter(int beforeData){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current.next != null && current.data != beforeData){
+                current = current.next;
+            }//end of while loop
+            node1 target = current.next;
+            node1 afterTarget = current.next.next;
+            current.next = afterTarget;
+            afterTarget.prev = current;
+            target.next = null;
+            target.prev = null;
+        }//end of if-else
+    }//end of deleteAfter method
+
+    public void deleteBefore(int afterData){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current.next != null && current.data != afterData){
+                current = current.next;
+            }//end of while loop
+            node1 target = current.prev;
+            node1 beforeTarget = current.prev.prev;
+            current.prev = beforeTarget;
+            beforeTarget.next = current;
+            target.next = null;
+            target.prev = null;
+        }//end of if-else
+    }//end of deleteBefore
+    // ******Other Methods******//
+    public void display(){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current != null){
+                System.out.print(current.data + " ");
+                current = current.next;
+            }//end of while loop
+            System.out.println();
+        }//end of if-else
+    }//end of display method
+
+    public void count(){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            int count = 0;
+            while(current != null){
+                count++;
+                current = current.next;
+            }//end of while loop
+            System.out.println("Number of node(s): " + count);
+        }//end of if-else
+    }//end of count method
+
+    public void displayPreNex(int midData){
+        if(head == null){
+            System.out.println("List is empty");
+        } else {
+            node1 current = head;
+            while(current.next!= null && current.data != midData){
+                current = current.next;
+            }//end of while loop
+            System.out.println("The current node: "+ current.data +" The previous node: " + current.prev.data +
+                    " The following node: " + current.next.data);
+        }//end of if-else
+    }//end of displayPreNex method
+}//end of DLL class

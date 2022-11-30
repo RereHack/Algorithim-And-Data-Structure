@@ -1,4 +1,4 @@
-public class TestBubble {
+public class TestSorting {
     public static void main(String[] args){
         int[] data = new int[6];
     }//end of main method

@@ -1,0 +1,116 @@
+public class TestTree {
+    public static void main(String[] args){
+        BSTree T = new BSTree();
+    }//end of main method
+}//end of main method
+
+ class Node{
+    int data;
+    Node left = null;
+    Node right = null;
+
+  public Node(int data){
+      this.data = data;
+  }//end of constructor
+}//end of node class
+
+ class BSTree{
+     Node root = null;
+
+  public void insert(int data){
+      root = insert(root , data);
+  }//end of public insertion method
+
+  private Node insert(Node node , int data){
+      if(node == null){
+          node = new Node(data);
+      } else {
+          if(data <= node.data) {
+              node.left = insert(node.left , data);
+          } else {
+              node.right = insert(node.right , data);
+          }//end of inner if-else
+      }//end of if-else
+      return node;
+  }//end of private insertion method
+     public void inorder(Node node){
+      if(node == null){
+          return;
+      } else {
+          inorder(node.left);
+          System.out.print(node.data + " ");
+          inorder(node.right);
+      }//end of if-else
+     }//end of inorder method
+
+     public void preorder(Node node){
+      if (node == null){
+          return;
+      } else {
+          System.out.print(node.data + " ");
+          preorder(node.left);
+          preorder(node.right);
+      } //end of if-else
+     }//end of preorder method
+
+     public void postorder(Node node){
+         if (node == null){
+             return;
+         } else {
+             postorder(node.left);
+             postorder(node.right);
+             System.out.print(node.data + " ");
+         } //end of if-else
+     }//end of postorder method
+
+     public void findMax(Node root){
+      int max;
+      if(root == null){
+          System.out.println("Tree is empty!");
+      } else {
+          while(root.right != null){
+              root = root.right;
+          }//end of while loop
+          max = root.data;
+          System.out.println(max);
+      }//end of if-else
+     }//end of findMax method
+
+     public void findMin(Node root){
+         int min;
+         if(root == null){
+             System.out.println("Tree is empty!");
+         } else {
+             while(root.left != null){
+                 root = root.left;
+             }//end of while loop
+             min = root.data;
+             System.out.println(min);
+         }//end of if-else
+     }//end of findMin method
+
+     public Node mirror(Node root){
+      Node tempChange;
+         if(root.right != null && root.left != null) {
+             Node left = mirror(root.left);
+             Node right = mirror(root.right);
+             tempChange = left;
+             root.left = root.right;
+             root.right = tempChange;
+         } else if(root.right != null && root.left == null) {
+             Node right = mirror(root.right);
+             root.left = right;
+             root.right = null;
+         } else if(root.right == null && root.left != null) {
+             Node left = mirror(root.left);
+             root.right = left;
+             root.left = null;
+         } else if (root.right == null && root.left == null) {
+             return root;
+         } else {
+             System.out.println("Tree is Empty!");
+         }//end of if-else
+         return root;
+     }//end of mirror method
+
+}//end of tree class

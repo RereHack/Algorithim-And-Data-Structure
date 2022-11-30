@@ -1,0 +1,79 @@
+public class TestQueue {
+    public static void main(String[] args){
+        Queue myQueue = new Queue();
+        System.out.println("Is queue empty? " + myQueue.isEmpty());
+    }//end of main method
+}//end of main class
+
+ class node{
+    String data;
+    node next = null;
+  public node(String data){
+      this.data = data;
+  }//end of constructor
+}//end of node class
+
+ class Queue{
+    node front = null;
+    node rear = null;
+
+  public void enqueue(String data){
+      node newNode = new node(data);
+      if(isEmpty()){ //or front == null
+          front = rear = newNode;
+      } else { //if we didn't use rear but while loop
+          rear.next = newNode;
+          rear = newNode;
+      }//end of if-else
+  }//end of enqueue method
+
+  public void dequeue(){
+      if(isEmpty()){ //or front == null
+          System.out.println("Queue is empty");
+      } else {
+          System.out.println("Deleted node data: " + front.data);
+          node toDlt = front;
+          front = front.next;
+          toDlt.next = null;
+      }//end of is-else
+  }//end of dequeue method
+
+  public void first(){
+      if(isEmpty()){ //or front == null
+          System.out.println("Queue is empty");
+      } else {
+          System.out.println("First node data: " + front.data);
+      }//end of is-else
+  }//end of first method
+
+  public boolean isEmpty(){
+      return front == null;
+  }//end of isEmpty method
+
+  public void display(){
+      if(isEmpty()){ //or front == null
+          System.out.println("Queue is empty");
+      } else {
+          node current = front;
+          while(current != null){
+              System.out.print(current.data + " ");
+              current = current.next;
+          }//end of while loop
+          System.out.println();
+      }//end of is-else
+  }//end of display method
+
+  public void count(){
+      if(isEmpty()){ //or front == null
+          System.out.println("Queue is empty");
+      } else {
+          int count = 0;
+          node current = front;
+          while(current != null){
+              count++;
+              current = current.next;
+          }//end of while loop
+          System.out.println("Number of node(s): " + count);
+      }//end of is-else
+  }//end of count method
+}//end of queue class

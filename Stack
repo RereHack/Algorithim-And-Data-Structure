@@ -1,0 +1,78 @@
+public class TestStack {
+    public static void main(String[] args){
+        Stack myStack = new Stack();
+    }//end of main method
+}//end of main class
+
+ class node{
+    int data;
+    node next = null;
+
+  public node(int data){
+      this.data = data;
+  }//end of constructor
+}//end of node class
+
+  class Stack{
+    node top = null;
+
+   public void push(int data){
+       node newNode = new node(data);
+       if(isEmpty()){ //or put it top == null
+           top = newNode;
+       } else {
+           newNode.next = top;
+           top = newNode;
+       }//end of if-else
+   }//end of push method
+
+   public void pop(){
+       if(isEmpty()){ //or put it top == null
+           System.out.println("Stack is empty!");
+       } else {
+           node toDlt = top;
+           top = top.next;
+           System.out.println("Deleted node data: " + toDlt.data);
+           toDlt.next = null;
+       }//end of if-else
+   }//end of pop method
+
+   public void peek(){
+       if(isEmpty()){ //or put it top == null
+           System.out.println("Stack is empty!");
+       } else {
+           System.out.println("Top node data: " +top.data);
+       }//end of if-else
+   }//end of peek method
+
+   public boolean isEmpty(){
+       return top == null;
+   }//end of isEmpty method
+
+   public void display(){
+       if(isEmpty()){ //or put it top == null
+           System.out.println("Stack is empty!");
+       } else {
+           node current = top;
+           while(current != null) {
+               System.out.print(current.data + " ");
+               current = current.next;
+           }//end of while loop
+           System.out.println();
+       }//end of if-else
+   }//end of display method
+
+   public void count(){
+       if(isEmpty()){ //or put it top == null
+           System.out.println("Stack is empty!");
+       } else {
+           node current = top;
+           int count = 0;
+           while(current != null) {
+               count++;
+               current = current.next;
+           }//end of while loop
+           System.out.println("Number of node(s): " + count);
+       }//end of if-else
+   }//end of count method
+}//end of stack class

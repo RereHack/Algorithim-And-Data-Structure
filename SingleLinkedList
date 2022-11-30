@@ -1,0 +1,139 @@
+public class TestSLL {
+    public static void main(String[] args){
+        SLL myList = new SLL();
+    }//end of main method
+}//end of main class
+
+class node{
+    int data;
+    node next = null;
+ public node(int data){
+     this.data = data;
+ }//end of constructor
+}//end of node class
+
+class SLL{
+    node head = null;
+    node tail = null;
+
+  //******Insertion Methods******//
+  public void addFirst(int data){
+      node newNode = new node(data);
+      if(head == null){
+          head = tail = newNode;
+      } else {
+          newNode.next = head;
+          head = newNode;
+      }//end of if-else
+  }//end of addFirst method
+
+  public void addLast(int data){
+     node newNode = new node(data);
+     if(head == null){
+         head = tail = newNode;
+     } else {
+         node current = head;
+         while(current.next != null){
+             current = current.next;
+         }//end of while loop
+         current.next =newNode;
+         tail = newNode;
+     }//end of if-else
+  }//end of addLast method
+
+  public void addAfter(int prevData , int newData){
+     node newNode = new node(newData);
+     node current = head;
+     while(current.next != null && current.data != prevData){
+         current = current.next;
+     }//end of while loop
+     newNode.next = current.next;
+     current.next = newNode;
+  }//end of addAfter method
+
+  public void addBefore(int nextData , int newData){
+     node newNode = new node(newData);
+     node current = head;
+     while(current.next != null && current.next.data != nextData){
+         current = current.next;
+     }//end of while loop
+     newNode.next = current.next;
+     current.next = newNode;
+  }//end of addBefore method
+
+  //******Deletion Methods******//
+  public void deletFirst(){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          head = head.next;
+          current.next = null;
+      }//end of if-else
+  }//end of deleteFirst method
+
+  public void deleteLast(){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          while(current.next.next != null){
+              current = current.next;
+          }//end of while loop
+           current.next = null;
+           tail = current;
+      }//end of if-else
+  }//end of deleteLast method
+
+  public void deleteTarget(int target){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          while(current.next != null && current.next.data != target){
+              current = current.next;
+          }//end of while loop
+          current.next = current.next.next;
+      }//end of if-else
+  }//end of deleteTarget method
+
+  public void deleteAfter(int prevData){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          while(current.next != null && current.data != prevData){
+              current = current.next;
+          }//end of while loop
+          current.next = current.next.next;
+      }//end of while loop
+  }//end of deleteAfter method
+  // ******Other Methods******//
+  public void display(){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          while(current != null){
+              System.out.print(current.data + " ");
+              current = current.next;
+          }//end of while loop
+          System.out.println();
+      }//end of if-else
+  }//end of display method
+
+  public void count(){
+      if(head == null){
+          System.out.println("List is empty!");
+      } else {
+          node current = head;
+          int count = 0;
+          while(current != null){
+              count++;
+              current = current.next;
+          }//end of while loop
+          System.out.println("Number of node(s): " + count);
+      }//end of if-else
+  }//end of count method
+
+}//end of Sll class
